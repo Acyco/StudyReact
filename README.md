@@ -73,3 +73,31 @@ function Jsx01() {
 ```
 > 注意： if 语句，switch 语句、 变量声明属于语句，不是表达式， 不能出现在{}中
 
+### JSX 中实现列表渲染
+
+语法： 在 JSX 中可以使用原生 JS 的 `map方法` 遍历渲染列表。
+
+```js
+const list = [
+    { id: 1001, name: 'Vue'},
+    { id: 1002, name: 'React'},
+    { id: 1003, name: 'Angular'}
+]
+
+function Jsx02() {
+    return (
+        <div>
+            {/*  渲染列表  */}
+            <ul>
+                {list.map(item=><li key={item.id}>{item.name}</li>)}
+            </ul>
+        </div>
+    )
+}
+```
+说明：
+* map 循环哪个结构，return 哪个结构。
+* 注意事项： 加上一个独一无二的 key, 字符串或 number id。
+* key 的作用： React 框架内部使用的，用来提升更新性能的。
+
+

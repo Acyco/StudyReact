@@ -1,13 +1,13 @@
 // 项目的根组件
 // App -> index.js -> public/index.html
 
-import Jsx03 from "./jsx/Jsx03";
+import Jsx04 from "./jsx/Jsx04";
 
 function App() {
   return (
     <div className="App">
         this is App
-       <Jsx03/>
+       <Jsx04/>
     </div>
   );
 }

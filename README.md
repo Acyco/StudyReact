@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Study React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## React 是什么 
 
-## Available Scripts
+React由Meta(Facebook)公司研发， 是一个用于 `构建WEB和原生交互界面的库`。
 
-In the project directory, you can run:
+可以在浏览器上运行，也可以打包成移动端应用。 
 
-### `npm start`
+### 优势
+* 想较于传统基于DOM开发
+  - 组件化的开发方式
+  - 不错的性能
+* 相较于其它前端框架
+  - 丰富的生态
+  - 跨平台支持
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 使用 create-react-app 快速搭建开发环境
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+create-react-app 是一个快速 `创建React开发环境的工具`， 底层由Webpack构建，`封装了配置细节`，开箱即用。
 
-### `npm test`
+执行命令： `npx create-react-app react-basic`
+- npx: Node.js工具命令，查找并执行后续的包命令。
+- create-react-app: 核心包（固定写法）， 用于创建React项目。
+- react-basic React项目的名称（可自定义的）。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+当然 还有更多创建方式，具体可前往： [启动一个新的 React 项目](https://zh-hans.react.dev/learn/start-a-new-react-project)
 
-### `npm run build`
+## JSX
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 什么是 JSX
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+JSX 是 javaScript 和 XML(HTML) 的缩写， 表示在 `JS代码中编写HTML模板结构`， 它是React编写UI模板的方式。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+为什么要使用 JSX ? 使用它有两个好处：可以使用HTML的声明式模板写法还可以拥有JS的可编程能力。
 
-### `npm run eject`
+### JSX 的本质
+JSX 并不是标准的 JS 语法，它是 `JS 的语法扩展`， 浏览器并不能识别， 需要通过 `解析工具做了解析` 后才能在浏览器中运行。
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 在JSX 中使用 JS 表达式
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+在 JSX 中 可以通过 `大括号语法{}` 识别 JavaScript中的表达式， 比如常见的变量、函数调用、方法调用等。
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. 使用引号传递字符串
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. 使用 JavaScript 变量
+3. 函数调用
+4. 方法调用
 
-## Learn More
+```js
+const count = 100
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+function getName() {
+    return 'Acyco'
+}
+function Jsx01() {
+    return (
+        <div>
+            {/* 使用引号传递字符串 */}
+            {'this is message'}
+            {/* 使用JavaScript变量 */}
+            {count}
+            {/* 函数调用 */}
+            {getName()}
+            {/* 方法调用 */}
+            {new Date().getDate()}
+            {/* js对象 */}
+            <div style={{color: 'red'}}> this is div</div>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+        </div>
+    );
 
-### Code Splitting
+}
+```
+> 注意： if 语句，switch 语句、 变量声明属于语句，不是表达式， 不能出现在{}中
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

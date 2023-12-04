@@ -150,6 +150,77 @@ export default function Jsx04 (){
 }
 ```
 
+## React 中的事件绑定
+
+### React 基础事件绑定
+
+语法： `on + 事件名称 = { 事件处理程序 }`，整体上遵循驼峰命名法。
+
+```js
+function App() {
+  const handleClick = () => {
+    console.log("button被点击了");
+  }
+  return (
+    <div className="App">
+      <button onClick={handleClick}>click me</button>
+    </div>
+  );
+}
+```
+
+### 使用事件对象参数
+语法： 在事件回调函数中 `设置形参 e`
+
+```js
+function App() {
+  // 事件参数e
+  const handleClick = (e) => {
+    console.log("button被点击了",e);
+  }
+  return (
+    <div className="App">
+      <button onClick={handleClick}>click me</button>
+    </div>
+  );
+}
+```
+
+### 传递自定义参数
+语法： 事件绑定的位置改造成 `箭头函数的写法`， 在执行实际`处理业务函数`的时候传送实参。
+
+```js
+function App() {
+  // 事件参数e
+  const handleClick = (name,e) => {
+    console.log("button被点击了",name,e);
+  }
+  return (
+    <div className="App">
+      <button onClick={() =>handleClick('Acyco')}>click me</button>
+    </div>
+  );
+}
+```
+
+> 注意：不能直接写函数调用，这里事件的绑定需要一个 `函数引用`。
+
+### 同时传递事件对象和自定义参数
+语法： 在事件绑定的位置传递事件实参 e 和自定义参数， 处理函数中声明形参，注意顺序要一一对应。
+
+```js
+function App() {
+  // 事件参数e
+  const handleClick = (name,e) => {
+    console.log("button被点击了",name,e);
+  }
+  return (
+    <div className="App">
+      <button onClick={(e) =>handleClick('Acyco',e)}>click me</button>
+    </div>
+  );
+}
+```
 
 
 

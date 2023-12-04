@@ -100,4 +100,27 @@ function Jsx02() {
 * 注意事项： 加上一个独一无二的 key, 字符串或 number id。
 * key 的作用： React 框架内部使用的，用来提升更新性能的。
 
+### JSX 实现条件渲染
+
+语法： 在 React 中，可以通过 `逻辑与运算符&&、三元表达式(?:)` 实现基础的条件渲染。
+
+```js
+const isLogin = true
+
+export default function JSX03 () {
+    return (
+        <div>
+            {/* 逻辑与 && */}
+            <div>
+                {isLogin && <span> this is span</span>}
+            </div>
+            {/* 三元运算符 */}
+            <div>
+                {isLogin ? <span>Acyco</span> : <span>Loading....</span> }
+            </div>
+
+        </div>
+    )
+}
+```
 

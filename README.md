@@ -466,12 +466,36 @@ function App() {
 }
 ```
 
+## 组件通信
 
+### 理解组件通信
+概念： 组件通信就是 `组件之间的数据传递`， 根据组件嵌套关系的不同， 有不同的通信方法。
 
+![组件通信](./images/组件通信.png)
 
+### 父传子 - 基础实现
 
+![组件通信父传子](./images/组件通信父传子.png)
 
+1. 父组件传递数据 - 在子组件标签上 `绑定属性`，
+2. 子组件接收数据 - 子组件通过 `props 参数` 接收数据。
 
+```js
+function Son(props) {
+  // props:对象里面包含了父组件传递过来的所有数据
+  console.log(props)
+  return <div>this is son, {props.name}</div>
+}
+
+function App() {
+  const name = 'this is app name'
+    return (
+       <div>
+         <Son name={name}/>
+        </div>
+    );
+}
+```
 
 
 

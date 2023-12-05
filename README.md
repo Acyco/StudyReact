@@ -552,6 +552,37 @@ function App() {
     );
 }
 ```
+### 子传父
+
+![组件通信子传父](./images/组件通信子传父.png)
+
+核心思路： 在子组件中调用父组件中的函数并传递参数
+
+```js
+import {useState} from "react";
+
+function Son({onGetSonMsg}) {
+  const sonMsg = 'this is son msg'
+  return <div>
+    this is Son
+    <button onClick={()=> onGetSonMsg(sonMsg)}>sendMsg</button>
+  </div>
+}
+
+function App() {
+  const [msg,setMsg] = useState('')
+  const getMsg = (msg) => {
+    console.log(msg)
+    setMsg(msg)
+  }
+    return (
+       <div>
+         this is App, {msg}
+         <Son onGetSonMsg={getMsg} />
+       </div>
+    );
+}
+```
 
 
 

@@ -530,8 +530,28 @@ function App() {
 }
 ```
 
+### 父传子-特殊的 prop children
 
+场景： 当我们把内容嵌套在子组件标签中时，父组件会自动在名为 children 的 prop 属性中接收该内容。
 
+```js
+function Son(props) {
+  console.log(props);
+  return <div>this is son, {props.children}</div>
+}
+
+function App() {
+  const name = 'this is app name'
+    return (
+       <div>
+         <Son>
+           <span>this is span</span>
+         </Son>
+
+        </div>
+    );
+}
+```
 
 
 

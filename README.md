@@ -556,7 +556,7 @@ function App() {
 
 ![组件通信子传父](./images/组件通信子传父.png)
 
-核心思路： 在子组件中调用父组件中的函数并传递参数
+核心思路： 在子组件中调用父组件中的函数并传递参数。
 
 ```js
 import {useState} from "react";
@@ -584,6 +584,51 @@ function App() {
 }
 ```
 
+### 使用状态提升实现兄弟组件通信
 
+![组件通信兄弟通信](./images/组件通信兄弟通信.png)
 
+实现思路： 借助"状态提升"机制， 通过父组件进行兄弟组件之间的数据传递。
+
+```js
+
+import {useState} from "react";
+
+function A({onGetAName}) {
+  const name = 'this is A name'
+  return (
+    <div>
+      this is A component,
+      <button onClick={() => onGetAName(name)}>send</button>
+    </div>
+  )
+}
+
+function B({name}) {
+  return (
+    <div>
+      this is B component,
+      {name}
+    </div>
+  )
+}
+
+function App() {
+  const [name, setName] = useState('')
+  const getAName = (name) => {
+    console.log(name)
+    setName(name)
+  }
+  return (
+    <div>
+      this is App,
+      <A onGetAName={getAName}/>
+      <B name={name}/>
+    </div>
+  );
+}
+```
+
+1. A组件先通过子传父的方式把数据传给父组件App。
+2. App拿到数据后通过父传子的方式再传递给B组件。
 

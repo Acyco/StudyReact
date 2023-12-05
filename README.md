@@ -392,8 +392,47 @@ function App() {
 }
 ```
 
+## 受控表单绑定
 
+概念： 使用 React 组件的状态 (useState) 控制表单状态。
 
+![useSate](./images/useState.png)
 
+1. 准备一个 React 状态值
 
+```js
+ const [value, setValue] = useState('')
+```
+
+2. 通过 value 属性绑定状态，通过 onChange 属性绑定状态同步的函数。
+
+```js
+<input
+  type="text"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+/>
+```
+
+```js
+// 1. 声明一个react状态 - useState
+// 2. 核心绑定流程
+//  1）通过value属性绑定react状态
+//  2）绑定onChange事件，通过事件参数e拿到输入框最新的值，反向修改到react状态
+import {useState} from "react";
+
+function App() {
+  const [value, setValue] = useState('')
+
+    return (
+       <div>
+         <input
+           type="text"
+           value={value}
+           onChange={(e) => setValue(e.target.value)}
+         />
+        </div>
+    );
+}
+```
 

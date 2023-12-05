@@ -497,6 +497,41 @@ function App() {
 }
 ```
 
+### 父传子 - props 说明
+1. props 可传递任意数据， 数字、字符串、布尔值、数组、对象、函数、JSX。
+2. props 是只读对象，子组件 `只能读取 props 中的数据`, 不能直接进行修改， 父组件的数据只能由父组件修改，
+3. 
+
+```js
+function Son(props) {
+  // props:对象里面包含了父组件传递过来的所有数据
+  // {name:'父组件中的数据'}
+  console.log(props)
+  //props.name= 'new name' // TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+  return <div>this is son, {props.name}, jsx: {props.child} </div>
+}
+
+function App() {
+  const name = 'this is app name'
+  return (
+    <div>
+      <Son
+        name={name}
+        age={18}
+        isTrue={false}
+        list={['vue', 'react']}
+        obj={{name: 'Acyco'}}
+        cb={()=> console.log(123)}
+        child={<span>this is span</span>}
+      />
+
+    </div>
+  );
+}
+```
+
+
+
 
 
 

@@ -349,6 +349,49 @@ function App() {
 }
 ```
 
+## 组件样式处理
+ 
+### 组件基础样式方案
+
+1. 行内样式（不推荐）
+```js
+function App() {
+    const style = {
+        color: 'red',
+        fontSize: '50px'
+    }
+
+  return (
+    <div className="App">
+       {/* 行内样式控制 */}
+      <span style={{color: 'red', fontSize: '50px'}}> this is span</span>
+      <span style={style}> this is span</span>
+    </div>
+  );
+}
+```
+2. class 类名控制
+
+`index.css`
+```css
+.foo {
+    color: blue;
+}
+```
+
+```js
+import './index.css'
+
+function App() {
+  return (
+    <div className="App">
+        {/* 通过class类名控制 */}
+        <span className="foo"> this is class foo</span>
+    </div>
+  );
+}
+```
+
 
 
 

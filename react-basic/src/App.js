@@ -1,21 +1,21 @@
 // 项目的根组件
 // App -> index.js -> public/index.html
 
-import {useState} from "react";
+import './index.css'
+
 function App() {
-    const [form, setForm] = useState({name: "Acyco"})
-    const changeForm = () => {
-        // 错误写法: 直接修改
-        // form.name = "Alice"
-        // 正确写法： setForm 传入一个全新的对象
-        setForm({
-            ...form,
-            name: "Alice"
-        })
+    const style = {
+        color: 'red',
+        fontSize: '50px'
     }
+
   return (
     <div className="App">
-        <button onClick={changeForm}>修改form：{form.name}</button>
+        {/* 行内样式控制 */}
+        <span> this is span</span>
+        <span style={style}> this is span</span>
+        {/* 通过class类名控制 */}
+        <span className="foo"> this is class foo</span>
     </div>
   );
 }

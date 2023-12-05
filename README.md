@@ -435,4 +435,45 @@ function App() {
     );
 }
 ```
+## React 中获取 DOM
+
+在 React 组件中获取/操作 DOM，需要使用 `useRef` 钩子函数， 分为两步：
+
+1. 使用 useRef 创建 ref 对象， 并与 JSX 绑定
+2. 在 DOM 可用时，通过 inputRef.`current` 拿到 DOM 对象
+
+```js
+// 1. useRef生成ref对象，绑定到dom标签上
+// 2. dom可用时，ref.current获取dom
+// 渲染完毕之后dom生成之后才可用。
+
+import {useRef} from "react";
+
+function App() {
+
+  const inputRef = useRef(null)
+  const showDom = () => {
+    console.dir(inputRef.current)
+  }
+
+    return (
+       <div>
+         <input
+           type="text" ref={inputRef} />
+         <button onClick={showDom}>获取dom</button>
+        </div>
+    );
+}
+```
+
+
+
+
+
+
+
+
+
+
+
 

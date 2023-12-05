@@ -632,3 +632,59 @@ function App() {
 1. A组件先通过子传父的方式把数据传给父组件App。
 2. App拿到数据后通过父传子的方式再传递给B组件。
 
+### 使用 Context 机制跨层级组件通信
+
+![跨层级组件通信](./images/跨层级组件通信.png)
+
+实现步骤：
+
+1. 使用 createContext 方法创建一个上下文对象 Ctx 。
+2. 在顶层组件（APP）中通过 `Ctx.Provider 组件` 提供数据。
+3. 在底层组件中通过 useContext 钩子函数获取消费数据。
+ 
+```js
+import {createContext, useContext} from "react";
+
+const MsgContext = createContext()
+function A() {
+  return (
+    <div>
+      this is A component
+      <B />
+    </div>
+  )
+}
+
+function B() {
+ const msg = useContext(MsgContext)
+  return (
+    <div>
+      this is B component,{msg}
+    </div>
+  )
+}
+
+function App() {
+const msg = 'this is app msg'
+
+  return (
+    <div>
+      <MsgContext.Provider value={msg}>
+        this is App,
+        <A />
+      </MsgContext.Provider>
+    </div>
+  );
+}
+```
+
+
+
+
+
+
+
+
+
+
+

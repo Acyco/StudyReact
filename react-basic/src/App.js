@@ -1,38 +1,36 @@
 // 项目的根组件
 // App -> index.js -> public/index.html
 
-import {useState} from "react";
+import {createContext, useContext} from "react";
 
-function A({onGetAName}) {
-  const name = 'this is A name'
+const MsgContext = createContext()
+function A() {
   return (
     <div>
-      this is A component,
-      <button onClick={() => onGetAName(name)}>send</button>
+      this is A component
+      <B />
     </div>
   )
 }
 
-function B({name}) {
+function B() {
+ const msg = useContext(MsgContext)
   return (
     <div>
-      this is B component,
-      {name}
+      this is B component,{msg}
     </div>
   )
 }
 
 function App() {
-  const [name, setName] = useState('')
-  const getAName = (name) => {
-    console.log(name)
-    setName(name)
-  }
+const msg = 'this is app msg'
+
   return (
     <div>
-      this is App,
-      <A onGetAName={getAName}/>
-      <B name={name}/>
+      <MsgContext.Provider value={msg}>
+        this is App,
+        <A />
+      </MsgContext.Provider>
     </div>
   );
 }

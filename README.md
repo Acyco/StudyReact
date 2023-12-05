@@ -299,6 +299,57 @@ function App() {
 }
 ```
 
+### useState 修改状态的规则
+
+#### 状态不可变
+
+在 React 中，状态被认为是只读的，我们应该始终 `替换它而不是修改它`， 直接修改状态不能引发视图更新。
+
+```js
+import {useState} from "react";
+function App() {
+
+  let  [count, setCount] = useState(0)
+
+  const handleClick = () => {
+    // 直接修改是无法引发视图更新
+    // count++
+    // console.log(count);
+    setCount(count + 1);
+  }
+  return (
+          <div className="App">
+            <button onClick={handleClick}>{count}</button>
+          </div>
+  );
+}
+```
+#### 修改对象状态
+
+规则： 对于对象类型的状态变量， 应该始终传给set方法一个 `全新的对象` 来进行修改。
+
+```js
+import {useState} from "react";
+function App() {
+    const [form, setForm] = useState({name: "Acyco"})
+    const changeForm = () => {
+        // 错误写法: 直接修改
+        // form.name = "Alice"
+        // 正确写法： setForm 传入一个全新的对象
+        setForm({
+            ...form,
+            name: "Alice"
+        })
+    }
+  return (
+    <div className="App">
+        <button onClick={changeForm}>修改form：{form.name}</button>
+    </div>
+  );
+}
+```
+
+
 
 
 

@@ -1,36 +1,27 @@
 // 项目的根组件
 // App -> index.js -> public/index.html
 
-import {createContext, useContext} from "react";
+import {useEffect, useState} from "react";
 
-const MsgContext = createContext()
-function A() {
-  return (
-    <div>
-      this is A component
-      <B />
-    </div>
-  )
-}
-
-function B() {
- const msg = useContext(MsgContext)
-  return (
-    <div>
-      this is B component,{msg}
-    </div>
-  )
-}
-
+const URL= 'https://2023.ipchaxun.com'
 function App() {
-const msg = 'this is app msg'
-
+  const[ip,setIp] = useState([])
+  useEffect(() => {
+    // 额外的操作，获取频道列表
+    async function getIP() {
+      const res = await fetch(URL)
+      const jsonRes = await res.json()
+      console.log(jsonRes)
+      setIp(jsonRes.data)
+    }
+    getIP()
+  }, [])
   return (
     <div>
-      <MsgContext.Provider value={msg}>
-        this is App,
-        <A />
-      </MsgContext.Provider>
+        this is App
+      <ul>
+        {ip.map(item => <li key={Math.random()}>{item}</li>)}
+      </ul>
     </div>
   );
 }

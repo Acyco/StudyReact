@@ -678,13 +678,48 @@ const msg = 'this is app msg'
 }
 ```
 
+## useEffect 的使用
 
+### useEffect 的概念理解
 
+useEffect 是一个 React Hook 函数， 用于在 React 组件中创建不是由事件引起而是 `由渲染本身引起的操作`，比如发送 Ajax请求， 更改 DOM等等。
 
+![useEffect](./images/useEffect.png "useEffect")
 
+说明： 上面的组件中没有发生任何的用户事件，`组件渲染完毕之后` 就需要和服务器要数据， 整个过程属于 "`只由渲染引起的操作`"。
 
+### useEffect 的基础使用
 
+需求： 在组件渲染完毕之后， 立刻从服务端获取频道列表数据并显示到页面中
 
+语法： `useEffect(() => { },[])`
 
+参数1是一个函数，可以把它叫作副作用函数，在函数内部可以放置要执行的操作。
+参数2是一个数组（可选参数），在数组里放置依赖项， 不同依赖项会影响第一个参数函数的执行， `当是一个空数组的时候，副作用函数只会在组件渲染完毕之后执行一次`。
 
+```js
+import {useEffect, useState} from "react";
 
+const URL= 'https://2023.ipchaxun.com'
+function App() {
+  const[ip,setIp] = useState([])
+  useEffect(() => {
+    // 额外的操作，获取频道列表
+    async function getIP() {
+      const res = await fetch(URL)
+      const jsonRes = await res.json()
+      console.log(jsonRes)
+      setIp(jsonRes.data)
+    }
+    getIP()
+  }, [])
+  return (
+    <div>
+        this is App
+      <ul>
+        {ip.map(item => <li key={Math.random()}>{item}</li>)}
+      </ul>
+    </div>
+  );
+}
+```

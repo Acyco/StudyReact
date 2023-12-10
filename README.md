@@ -723,3 +723,81 @@ function App() {
   );
 }
 ```
+
+### useEffect 依赖项参数说明
+
+useEffect副作用函数的执行时机存在多种情况，根据 `传入依赖项的不同`， 会有不同的执行表现。
+
+|   依赖项   |     副作用执行时间      |
+|:-------:|:----------------:|
+|  没有依赖项  |  组件初始渲染+组件更新时执行  |
+| 空数组依赖项  |   只在初始渲染时执行一次    |
+| 添加特定依赖项 | 组件初始渲染+特性依赖变化时执行 |
+
+* 没有依赖项
+```js
+import {useEffect, useState} from "react";
+
+function App() {
+  const [count,setCount] = useState(0)
+  useEffect(() => {
+    console.log("副作用函数执行了");
+  })
+  return (
+    <div>
+      this is app
+      <button onClick={()=>setCount(count + 1)}>+{count}</button>
+    </div>
+  )
+}
+```
+* 空数组依赖项
+
+```js
+import {useEffect, useState} from "react";
+
+function App() {
+  const [count,setCount] = useState(0)
+  useEffect(() => {
+    console.log("副作用函数执行了");
+  },[])
+  return (
+    <div>
+      this is app
+      <button onClick={()=>setCount(count + 1)}>+{count}</button>
+    </div>
+  )
+}
+```
+* 添加特定依赖项
+
+```js
+import {useEffect, useState} from "react";
+
+function App() {
+  const [count,setCount] = useState(0)
+  useEffect(() => {
+    console.log("副作用函数执行了");
+  },[count])
+  return (
+    <div>
+      this is app
+      <button onClick={()=>setCount(count + 1)}>+{count}</button>
+    </div>
+  )
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

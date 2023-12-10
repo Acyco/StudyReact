@@ -1,33 +1,21 @@
 // 项目的根组件
 // App -> index.js -> public/index.html
 
+import {useState} from "react";
 
-// 问题： 布尔切换的逻辑 当前组件耦合在一起的 不方便复用
-// 解决思路： 自定义hook
+//  Line 7:1:  React Hook "useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+// useState(''); // 组件外使用
 
-import {useEffect, useState} from "react";
-
-function useToggle () {
-  const [value, setalue] = useState(true)
-  const toggle = () => setValue(!value)
-  // 哪些状态和回调函数需要在其他组件使用 return
-  return {
-    value,
-    toggle
-  }
-}
-// 封装自定义 hook 通用思路
-// 1. 声明一个以 use 打头的函数
-// 2. 在函数体内封装可利用的逻辑（只要是可用的逻辑）
-// 3. 把组件中用到的状态或回调return出去 (以对象或数组）
-// 4. 在哪个组件中要用到这个逻辑， 就执行这个函数， 解构出来状态和回调进行使用
 
 function App() {
-  const [value,toggle] = useToggle();
+  // if for 组件内部函数
+  if(Math.random() >0.5){
+    // Line 14:5:  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+    useState(''); //
+  }
   return (
     <div>
-      {value && <div>this is div</div>}
-      <button onClick={toggle}>toggle</button>
+      this is app
     </div>
   )
 }

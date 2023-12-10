@@ -829,7 +829,7 @@ function App() {
 
 ### 自定义 Hook 函数
 
-概念：自定义 Hook 是以 `use 开头的函数`，通过自定义 Hook函数可以用来实现 `逻辑的封装和复用`
+概念：自定义 Hook 是以 `use 开头的函数`，通过自定义 Hook函数可以用来实现 `逻辑的封装和复用`。
 
 * 不封闭
 ```js
@@ -879,7 +879,35 @@ function App() {
 }
 ```
 
+### ReactHooks 使用规则
 
+* 使用规则 
+
+1. 只能在组件中使用或者其他自定义 Hook 函数中调用。
+2. 只能在组件的顶层调用， 不能嵌套在 if、for、其他函数中
+
+```js
+
+import {useState} from "react";
+
+//  Line 7:1:  React Hook "useState" cannot be called at the top level. React Hooks must be called in a React function component or a custom React Hook function  react-hooks/rules-of-hooks
+// useState(''); // 组件外使用
+
+
+function App() {
+  // if for 组件内部函数
+  if(Math.random() >0.5){
+    // Line 14:5:  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+    useState(''); // 
+  }
+  return (
+    <div>
+      this is app
+    </div>
+  )
+}
+
+```
 
 
 

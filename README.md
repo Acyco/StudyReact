@@ -788,6 +788,41 @@ function App() {
 }
 ```
 
+### useEffect 清除副作用
+
+在 useEffect 中编写的 `由渲染本身引起的对接组件外部的操作`，社区也经常把它叫作 `副作用操作`，比如在 useEffect 中开启了一个定时器，想在组件制裁时把这个定时器再清理掉，这个过程就是清理副作用。
+
+```js
+import {useEffect, useState} from "react";
+
+function Son () {
+  // 1. 渲染时开启一个定时器
+  useEffect(() => {
+    const timer = setInterval( ()=> {
+      console.log("定时器执行中...")
+    }, 1000)
+
+    return () => {
+      // 清除副作用 （组件卸载时）
+      clearInterval(timer)
+    }
+  })
+  return (
+    <div>this is son</div>
+  )
+}
+
+function App() {
+  // 通过条件渲染模拟组件卸载
+  const [show,setShow] = useState(true)
+  return (
+    <div>
+      {show && <Son />}
+      <button onClick={()=>setShow(false)}>卸载Son组件</button>
+    </div>
+  )
+}
+```
 
 
 

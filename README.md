@@ -999,7 +999,54 @@ Redux 是 React 最常用的 `集中状态管理工具`，类似于 Vue 的Pinia
 
 1. state:  一个对象 存放着我们管理的数据
 2. action:  一个对象 用来描述你想怎么改数据
-3. reducer:  一个函数 根据action的描述更新state
+3. reducer:  一个函数 根据 action 的描述更新 state
+
+### Redux 与 React - 环境准备
+Redux 虽然是一个框架无关可以独立运行的插件，但是社区通常还是把它与 React 绑定在一起使用，以一个计数器案例体验一下 Redux + React 的基础使用
+
+### 1.配套工具
+在 React 中使用 redux，官方要求安装俩个其他插件 - `Redux Toolkit` 和 `react-redux`
+
+1. Redux Toolkit（RTK）- 官方推荐编写Redux逻辑的方式，是一套工具的集合集，简化书写方式
+
+2. react-redux - 用来 `链接 Redux 和 React 组件` 的中间件
+
+![redux3](./images/Redux3.png)
+
+### 2. 配置基础环境
+
+1.  使用 CRA 快速创建 React 项目
+```bash
+npx create-react-app react-redux 
+```
+
+2.  安装配套工具
+```bash
+npm i @reduxjs/toolkit  react-redux 
+```
+
+3.  启动项目
+```bash
+npm run start 
+```
+
+## 3. store 目录结构设计
+
+![image.png](./images/Redux4.png)
+
+1. 通常集中状态管理的部分都会单独创建一个单独的 `store` 目录
+
+2. 应用通常会有很多个子store模块，所以创建一个 `modules` 目录，在内部编写业务分类的子store
+
+3. store中的入口文件 index.js 的作用是组合modules中所有的子模块，并导出store
+
+
+
+
+
+
+
+
 
 
 
